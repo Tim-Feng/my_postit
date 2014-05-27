@@ -26,11 +26,18 @@ class PostsController < ApplicationController
 
 
   def edit
-
+    @post = Post.find(params[:id])
   end
 
-  def udpate
+  def update
+    @post = Post.find(params[:id])
 
+    if @post.update(post_params)
+      flash[:notice] = "Your post was updated"
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   private
