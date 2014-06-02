@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   def create
+    @post = Post.find(params[:post_id])
     # @comment = Comment.new(params.require(:comment).permit(:body))
     # @comment.post = @post
     # 上兩行code可簡化成下一行code
-    @comment = @post.comment.build(params.require(:comment).permit(:body))
-    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(params.require(:comment).permit(:body))
     @comment.creator = User.first
 
     if @comment.save
