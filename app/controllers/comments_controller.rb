@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     # @comment.post = @post
     # 上兩行code可簡化成下一行code
     @comment = @post.comments.build(params.require(:comment).permit(:body))
-    @comment.creator = User.first
+    @comment.creator = User.create(username: "Matt")
 
     if @comment.save
       flash[:notice] = "Your comment was added"
