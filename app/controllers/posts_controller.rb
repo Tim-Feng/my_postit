@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   end
 
   def create
-
     @post = Post.new(post_params)
     @post.creator = User.create(username: "Matt")
 
@@ -45,7 +44,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 
 end
