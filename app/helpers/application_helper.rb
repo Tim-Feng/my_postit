@@ -7,4 +7,6 @@ module ApplicationHelper
     dt.strftime("%m/%d/%Y %l:%M%P")
   end
 
+  
+
 end
