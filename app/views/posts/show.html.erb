@@ -26,12 +26,5 @@
 <% end %>
 
 <h5>Comments:</h5>
-<% @post.comments.each do |comment| %>
-  <div class="span8 well">
-    <p>"<%= comment.body %>"</p>
-    <p>
-      by <%= comment.creator.username %>
-      <small> at <%= comment.created_at %></small>
-    </p>
-  </div>
-<% end %>
+<%= render 'shared/comment', obj: @post %>
+

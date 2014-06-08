@@ -11,5 +11,7 @@ PostitTemplate::Application.routes.draw do
   end
 
   resources :categories, only: [:create, :new, :show]
-  resources :users, only: [:create]
+  get '/register', to: 'users#new' 
+  resources :users, only: [:show, :edit, :create, :update]
+
 end
