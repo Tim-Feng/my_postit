@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
   validates :url, presence: true, uniqueness: true
 
-  before_save :generate_slug
+  before_save :generate_slug!
 
   def total_votes
     up_vote - down_vote
@@ -27,13 +27,24 @@ class Post < ActiveRecord::Base
     self.slug
   end
 
-  def generate_slug
+  def generate_slug!
     the_slug = to_slug(self.title)
     post = Post.find_by slug: the_slug
-    if post
-      the_slug = the_slug + '-2'
+    count = 2
+    while post && post != self
+      the_slug = append_suffix(the_slug, count)
+      post = Post.find_by slug: the_slug
+      count += 1
     end
-    self.slug = the_slug.downcase
+    self.slug = str.downcase
+  end
+
+  def append_suffix(the_slug, count)
+    if str.split('-').last.to_i != 0
+      return str.split('-').slice(0...-1).join('-') + "-" + count.to_s
+    else
+      return str + "-" + count.to_s
+    end
   end
 
   def to_slug(name)
