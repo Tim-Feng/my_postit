@@ -5,6 +5,7 @@ module Voteable
 
   included do
     has_many :votes, as: :voteable
+    # puts "This is a CLASS METHOD"
   end
 
   def total_votes
