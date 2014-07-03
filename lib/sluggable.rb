@@ -19,7 +19,7 @@ module  Sluggable
       obj = self.class.find_by slug: the_slug
       count += 1
     end
-    self.slug = str.downcase
+    self.slug = the_slug.downcase
   end
 
   def append_suffix(the_slug, count)
